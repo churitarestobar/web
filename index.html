@@ -3,17 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHURITA CAFETERÍA & RESTO BAR</title>
+<title>CHURITA | Cafetería & Resto Bar</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="icon" href="img/logo3.png" type="image/x-icon">
-    <link rel="shortcut icon" href="img/logo3.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="img/logo3.pngo">
+<meta name="description" content="Churita Cafetería & Resto Bar en Yala: Disfrutá de desayunos artesanales, nuestra exclusiva pizza de masa madre y momentos inolvidables. Reservá tu mesa y viví una experiencia gastronómica única en un ambiente acogedor.">
+<meta name="keywords" content="Churita, Cafetería en Yala, Resto Bar Jujuy, desayunos artesanales, pizza de masa madre, dónde comer en Yala, lugares para desayunar en Jujuy, reservas, eventos, gastronomía Yala, restaurante acogedor">
+<meta property="og:title" content="CHURITA - Cafeteía & Resto Bar">
+<meta property="og:url" content="churitarestobar@gmail.com">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="CHURITA">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 <link rel="icon" href="img/logo.ico" type="image/x-icon">
 <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="img/logo.ico">
+
 <style>
     :root {
         --color-dark: #0B3B3B;
@@ -161,6 +165,7 @@
         box-shadow: 0 0 0 2px var(--color-gold);
     }
 </style>
+
 </head>
 <body>
     <!-- Header with Pill Shape -->
@@ -623,7 +628,7 @@
         </div>
 
         <div class="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
-            <p>&copy; 2026 CHURITA CAFETERÍA & RESTO BAR. Todos los derechos reservados.</p>
+            <p>&copy; 2026 CHURITA | Cafetería & Resto Bar. Todos los derechos reservados.</p>
         </div>
     </div>
 </footer>
@@ -633,8 +638,7 @@ const API_KEY = 'AIzaSyB1GvnSx4a99ZLJvTPlevQxGjDp4JNXM2g';
 const FOLDER_ID = '1OCKRMrGwG3rZiaV7d6vSicayW7JvRKcx'; 
 const DRIVE_API_URL = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'+and+explicitlyTrashed=false&fields=files(id,name,thumbnailLink)&key=${API_KEY}`;
 
-
-// =========================================================================
+// ========================================================================
 // 4. DINAMIC GOOGLE DRIVE CAROUSEL WITH AUTO-SCROLL
 // =========================================================================
 async function cargarFotosDriveIndex() {

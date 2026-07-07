@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHURITA CAFETERÍA & RESTO BAR</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" href="img/logo3.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logo3.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/logo3.pngo">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<link rel="icon" href="img/logo.ico" type="image/x-icon">
+<link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="img/logo.ico">
+<style>
+    :root {
+        --color-dark: #0B3B3B;
+        --color-gold: #D4A017;
+        --color-cream: #ebddc0;
+        --color-text: #2C2C2C;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--color-cream);
+        color: var(--color-text);
+    }
+    h1, h2, h3, h4, .font-serif {
+        font-family: 'Playfair Display', serif;
+    }
+    .bg-dark {
+        background-color: var(--color-dark);
+    }
+    .bg-cream {
+        background-color: var(--color-cream);
+    }
+    .bg-gold {
+        background-color: var(--color-gold);
+    }
+    .text-dark {
+        color: var(--color-dark);
+    }
+    .text-gold {
+        color: var(--color-gold);
+    }
+    .border-gold {
+        border-color: var(--color-gold);
+    }
+    .btn-primary {
+        background-color: var(--color-gold);
+        color: var(--color-dark);
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: #B88A14;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(212, 160, 23, 0.3);
+    }
+    .btn-outline {
+        border: 2px solid var(--color-gold);
+        color: var(--color-gold);
+        transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+        background-color: var(--color-gold);
+        color: var(--color-dark);
+        transform: translateY(-2px);
+    }
+    .nav-pill {
+        background-color: var(--color-dark);
+        border-radius: 0 0 0 4rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        padding: 5px 0;
+        width: 100%;           /* Ocupa 85% del ancho total */
+        margin-left: auto;    /* Empuja todo el header hacia la derecha */
+        margin-right: 0;
+        
+    } /* Esta llave cierra .nav-pill */
+.nav-pill img {
+    height: 80px;  /* Probá con 50px o 40px si lo querés más petiso */
+    width: auto;   /* Para que no se deforme */
+}
+    /* Ocultar icono nativo del date - va AFUERA de .nav-pill */
+    input[type="date"] {
+        position: relative;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+        opacity: 0;
+    }
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-clear-button {
+        display: none;
+        -webkit-appearance: none;
+    }
+    
+    @media (max-width: 1023px) {
+        .nav-pill {
+            border-radius: 0;
+        }
+    }
+    .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+        padding-bottom: 6px;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: var(--color-gold);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+    .nav-link:hover::after, .nav-link.active::after {
+        width: 100%;
+    }
+    .nav-link.active {
+        color: var(--color-gold) !important;
+    }
+    .nav-link:hover {
+        color: var(--color-gold);
+    }
+    .card-zoom img {
+        transition: transform 0.5s ease;
+    }
+    .card-zoom:hover img {
+        transform: scale(1.08);
+    }
+    .menu-mobile {
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+    }
+    .menu-mobile.active {
+        transform: translateX(0);
+    }
+    .gradient-overlay {
+        background: linear-gradient(180deg, rgba(11,59,59,0.2) 0%, rgba(11,59,59,0.9) 100%);
+    }
+    .search-input {
+        transition: all 0.3s ease;
+    }
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--color-gold);
+    }
+</style>
+</head>
+<body>
+    <!-- Header with Pill Shape -->
+   <header class="fixed top-0 left-0 right-0 z-50">
+    
+    <div class="w-full"> 
+    
+        <div class="nav-pill px-8 sm:px-12 lg:px-48"> 
+        <div class="flex items-center justify-between py-2">
+                    <a href="#inicio" class="flex items-center gap-3">
+                    <img src="img/logo.webp" alt="Logo CHURRITA" class="w-32 h-32 sm:w-48 sm:h-48 lg:w-48 lg:h-48 object-contain">
+                    <div class="flex flex-col justify-center">
+                    <h1 class="font-serif text-lg sm:text-xl lg:text-2xl font-bold leading-tight text-white">CHURITA</h1>
+                    <p class="text-[9px] sm:text-xs tracking-[0.1em] text-gold uppercase">Cafetería & Resto Bar</p>
+                   </div>
+                </a>
+ <!-- Escritorio Menu -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    
+                    <a href="#menu" class="nav-link text-base font-medium text-white">Sugerencias</a>
+                    <a href="#eventos" class="nav-link text-base font-medium text-white">Eventos</a>
+                    <a href="carta.html" class="nav-link text-base font-medium text-white">Carta online</a>
+                    <a href="#galeriadrive" class="nav-link text-base font-medium text-white">Galería</a>
+                    <a href="#contacto" class="nav-link text-base font-medium text-white">Contacto</a>
+                    <a href="#reservas" class="bg-[#D4AF37] text-[#0A2624] px-6 py-2 rounded-full font-bold hover:bg-yellow-600 transition">Reservas</a>
+                </nav>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white hover:text-gold transition">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+      <div id="mobile-menu" class="menu-mobile fixed top-0 right-0 h-full w-80 bg-dark shadow-2xl lg:hidden z-50 p-8">
+    <div class="flex justify-between items-center mb-10">
+        <span class="font-serif text-xl font-bold text-gold">Menú</span>
+        <button id="close-menu-btn" class="text-2xl text-white hover:text-gold">
+            <img src="img/cerrar.png" alt="Cerrar" class="w-6 h-6 filter invert">
+        </button>
+    </div>
+    
+    <nav class="flex flex-col gap-6">
+        
+        <a href="#menu" class="mobile-nav-link text-lg text-white hover:text-gold transition flex items-center gap-4">
+            <img src="img/sugerencias.png" alt="Sugerencias" class="w-6 h-6 filter invert">
+            Sugerencias
+        </a>
+        
+        <a href="carta.html" class="nav-link text-base font-medium text-white flex items-center gap-4">
+            <img src="img/carta.png" alt="Carta" class="w-6 h-6 filter invert">
+            Carta online
+        </a>
+        
+        <a href="#eventos" class="mobile-nav-link text-lg text-white hover:text-gold transition flex items-center gap-4">
+            <img src="img/eventos.png" alt="Eventos" class="w-6 h-6 filter invert">
+            Eventos
+        </a>
+        
+        <a href="#galeriadrive" class="mobile-nav-link text-lg text-white hover:text-gold transition flex items-center gap-4">
+            <img src="img/galeria.png" alt="Galería" class="w-6 h-6 filter invert">
+            Galería
+        </a>
+        
+        <a href="#contacto" class="mobile-nav-link text-lg text-white hover:text-gold transition flex items-center gap-4">
+            <img src="img/contacto.png" alt="Contacto" class="w-6 h-6 filter invert">
+            Contacto
+        </a>
+        
+      <a href="#reservas" class="mobile-nav-link mt-4 btn-primary text-center px-5 py-3 rounded-full font-semibold flex items-center justify-center gap-3">
+    
+    <img 
+        src="img/reservas.png" 
+        alt="Reservas" 
+        class="w-6 h-6"
+        style="filter: brightness(0) saturate(100%) invert(18%) sepia(40%) saturate(1460%) hue-rotate(130deg) brightness(95%) contrast(90%);"
+    >
+    
+    Reservas
+</a>
+    </nav>
+</div>
+
+
+<div id="menu-overlay" class="hidden fixed inset-0 bg-black/50 z-40 lg:hidden"></div>
+    </header>
+
+    <!-- Hero Section -->   
+
+    <section id="inicio" class="bg-dark text-white relative overflow-hidden pt-40 lg:pt-56 pb-16 lg:pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-stretch">
+
+        <!-- Text Content -->
+        <div class="flex flex-col justify-start">
+            <div class="text-center lg:text-left">
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                    Descubre Sabores <span class="text-gold">Inolvidables</span> en el Corazón de Yala
+                </h2>
+
+                <div class="mb-4">
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-gold">CHURITA</h3>
+                    <p class="text-sm tracking-[0.3em] text-gray-300">CAFETERÍA & RESTO BAR</p>
+                </div>
+
+                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0 ">
+                   tu rincón acogedor, te invitamos a disfrutar de desayunos artesanales, 
+                   comidas reconfortantes y veladas inolvidables en un ambiente diseñado para desconectar.
+                    Cada plato y cada detalle están pensados para acompañarte en tus mejores momentos, 
+                    ofreciéndote una propuesta gastronómica tan variada como especial. Vení a descubrir 
+                    el punto de encuentro perfecto donde el buen sabor y la calidez se unen para hacerte 
+                    sentir siempre como en casa.<br>¡Te esperamos para compartir un momento favorito!
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                    <a href="#menu" class="btn-primary px-8 py-3.5 rounded-full font-semibold text-base">
+                        Ver Nuestro Menú
+                    </a>
+                    <a href="#reservas" class="btn-outline px-8 py-3.5 rounded-full font-semibold text-base">
+                        Reservar Mesa
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image -->
+        <div class="relative h-full min-h-[500px]">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl h-full">
+                <img src="img/inicio.webp"
+                     alt="Interior Churita"
+                     class="w-full h-full object-cover">
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            <div class="absolute -bottom-6 -left-6 bg-gold text-dark p-6 rounded-2xl shadow-xl hidden md:block">
+                <p class="font-serif text-5xl font-bold">+1</p>
+                <p class="text-sm font-semibold">Años de Sabor</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- Nuestras Especialidades -->
+    <section id="menu" class="py-16 md:py-24 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">Sabores Únicos</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mb-4">Nuestras Especialidades</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Cada plato es una experiencia creada con ingredientes frescos y pasión por la gastronomía</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Desayunos -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-zoom group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="img/desayuno.webp" 
+                             alt="Desayunos" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-gold text-dark px-4 py-1.5 rounded-full font-bold text-lg">
+                            Unicas
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl font-bold text-dark mb-2">Desayunos </h3>
+                        <p class="text-gray-600 mb-4">El tamaño de tu mañana lo decidís vos: arrancá el día con nuestras medialunas gigantes, tan grandes como tus ganas de un buen desayuno.</p>
+                        <a href="#" class="text-gold font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                            
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Lunch -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-zoom group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="img/pizza.webp" 
+                             alt="Lunch" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-gold text-dark px-4 py-1.5 rounded-full font-bold text-lg">
+                            Ricas
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl font-bold text-dark mb-2">Pizza de Masa Madre</h3>
+                        <p class="text-gray-600 mb-4">Crujiente por fuera, ligera por dentro: el secreto de nuestra pizza está en las horas de paciencia y masa madre natural.</p>
+                        <a href="#" class="text-gold font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                            
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Churita Dozert -->
+             <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-zoom group">
+               <div class="relative h-64 overflow-hidden">
+                 <img src="img/maracuya.webp" 
+                  alt="Churita dozert" 
+                 class="w-full h-full object-cover">
+                 <div class="absolute top-4 right-4 bg-gold text-dark px-4 py-1.5 rounded-full font-bold text-lg">
+                 Deliciosas
+             </div>
+          </div> 
+    
+           <div class="p-7">
+            <h3 class="font-serif text-2xl font-bold text-dark mb-2">Postre exotico Maracuya</h3>
+            <p class="text-gray-600 mb-4">Déjate seducir por la frescura vibrante del maracuyá en este postre, una auténtica joya tropical que conquista el paladar.</p>
+            <a href="#" class="text-gold font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+            
+        </a>
+    </div>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ambiente & Eventos -->
+    <section id="eventos" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">Celebra con nosotros</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mb-4">Ambiente & Eventos</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Un espacio diseñado para crear momentos memorables con tus seres queridos</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Card 1: Eventos para recordar -->
+                <div class="relative rounded-3xl overflow-hidden shadow-xl group h-[450px]">
+                    <img src="img/ajedrez.webp" 
+                         alt="Eventos para recordar" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-white">
+                        <h3 class="font-serif text-2xl md:text-2xl font-bold mb-2">Domingo de Ajedrez.<br>Desafiá tu Mente</h3>
+                        <p class="text-gray-200 mb-6 text-lg bg-black/40 p-4 rounded-xl backdrop-blur-sm">¡Sumate a nuestro próximo encuentro!
+                             Es la oportunidad perfecta para compartir partidas y disfrutar de un gran ambiente. ¡Te esperamos!</p>
+                        <a href="#contacto" class="btn-primary inline-block px-7 py-3 rounded-full font-semibold">
+                            Consultar Disponibilidad
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Reserva tu espacio -->
+                <div id="galeria" class="relative rounded-3xl overflow-hidden shadow-xl group h-[450px]">
+                    <img src="img/eventos.webp" 
+                         alt="Reserva tu espacio para fiestas" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-white">
+                        <h3 class="font-serif text-2xl md:text-2xl font-bold mb-2">Reserva tu espacio para fiestas y reuniones</h3>
+                        <p class="text-gray-200 mb-6 text-lg bg-black/40 p-4 rounded-xl backdrop-blur-sm">
+                         Cumpleaños, aniversarios, reuniones corporativas. Creamos experiencias personalizadas para cada ocasión.</p>
+                        <a href="#reservas" class="btn-primary inline-block px-7 py-3 rounded-full font-semibold">
+                            Solicitar Cotización
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Drive -->
+<section id="galeriadrive" class="py-16 md:py-24 bg-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">Galeria de imagenes</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mb-4">Nuestros Momentos y Productos</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Un recorrido por lo que nos hace especiales, momentos compartidos y el sabor de nuestros productos.</p>
+            </div>
+    </div>
+    <div class="relative max-w-5xl mx-auto group/arrows">
+    
+      <!-- Botones hacia atras y adelante -->
+      <button id="prevBtn" aria-label="Imagen anterior" class="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all md:opacity-0 md:group-hover/arrows:opacity-100 shadow-md">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="nextBtn" aria-label="Siguiente imagen" class="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all md:opacity-0 md:group-hover/arrows:opacity-100 shadow-md">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <div id="carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-6" style="scroll-behavior: smooth;">
+        <div id="drive-carousel-loading" class="min-w-[300px] md:min-w-[400px] snap-center flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-800 rounded-2xl h-72 shadow-lg">
+          <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-teal-600 mb-4"></div>
+          <p class="text-sm font-medium text-gray-500">Cargando fotos desde Google Drive...</p>
+        </div>
+        
+           <!-- tarjeta final link a instagram -->
+        <div id="instagram-card" class="min-w-[300px] md:min-w-[400px] snap-center flex flex-col justify-center items-center bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 rounded-2xl shadow-lg px-6 text-center text-white h-72">
+          <i class="fab fa-instagram text-5xl mb-4"></i>
+          <h3 class="text-2xl font-bold mb-2">¡Seguinos en las redes!</h3>
+          <p class="text-white/95 text-sm mb-6 max-w-[280px]">
+            ¡Seguinos en Instagram y entérate de todas las novedades de Churita Cafetería & Resto Bar! 
+          </p>
+          <a href="https://www.instagram.com/churitayala" target="_blank" rel="noopener" class="bg-white text-purple-700 px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-opacity-90 transition-all text-sm flex items-center gap-2">
+            @churitayala<i class="fas fa-external-link-alt text-xs"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-10 fade-in">
+      <p class="text-lg font-medium text-[var(--text-dark)] flex items-center justify-center gap-2 flex-wrap">
+        📸 ¡Mirá más contenido! 
+        <a href="https://www.instagram.com/churitayala" target="_blank" rel="noopener" class="text-teal-600 dark:text-[var(--accent-light)] font-bold hover:underline inline-flex items-center gap-1 transition-all">
+          ¡Seguinos en Instagram y enterate de todas nuestras novedades al instante!
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Nosotros -->
+<section id="nosotros" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Imagen -->
+            <div class="relative">
+                <img src="img/historia.webp" alt="Nuestro Equipo" class="rounded-3xl shadow-2xl w-full h-[500px] object-cover">
+                <div class="absolute -bottom-6 -right-6 bg-gold text-dark p-8 rounded-2xl shadow-xl hidden md:block">
+                    <p class="font-serif text-3xl font-bold">Pasión por</p>
+                    <p class="text-lg font-semibold uppercase tracking-widest">Lo auténtico</p>
+                </div>
+            </div>
+            
+            <!-- Texto -->
+            <div>
+                <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">Nuestra Historia</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mb-6">El alma de Churita en Yala</h2>
+                <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                    Churita nació con un propósito claro: ser el punto de encuentro donde el sabor casero y la calidez humana se dan la mano. Ubicados en el corazón de Yala, buscamos ofrecer más que un simple desayuno o almuerzo; queremos crear una pausa en tu rutina diaria.
+                </p>
+                <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                    Seleccionamos nuestros ingredientes con cuidado y dedicación, creyendo firmemente que cada detalle cuenta cuando se trata de hacerte sentir como en casa. Ya sea que nos visites por el aroma de nuestro café o por la tranquilidad de nuestro ambiente, estamos aquí para acompañar tus mejores momentos.
+                </p>
+                <a href="#contacto" class="btn-primary inline-block px-8 py-3.5 rounded-full font-semibold">
+                    Contactanos
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Reservas -->
+    <section id="reservas" class="py-16 md:py-20 bg-dark">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-6">¿Listo para vivir la experiencia Churita?</h2>
+        <p class="text-gray-300 text-lg mb-8">Hace tu reserva o déjanos un mensaje. "dejate sorprender con nuestros sabores únicos"</p>
+        
+        <form id="reserva-form" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-3xl mx-auto items-center">
+    <!-- Campos de entrada reducidos con px-4 y py-2 -->
+    <input type="text" id="nombre" placeholder="Nombre" required class="px-4 py-2 rounded-full border-2 border-gold/30 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-gold">
+    
+    <input type="tel" id="telefono" placeholder="Teléfono" required class="px-4 py-2 rounded-full border-2 border-gold/30 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-gold">
+    
+    <div class="relative w-full">
+    <input type="date" id="fecha" required 
+           class="w-full px-4 py-2 rounded-full border-2 border-gold/30 bg-white/10 text-white focus:outline-none focus:border-gold appearance-none">
+    
+    <!-- Icono de agenda/calendario -->
+    <svg class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" 
+         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+    </svg>
+</div>
+
+    <!-- Comentario ajustado a una sola línea estética -->
+    <textarea id="comentario" placeholder="Comentario..." class="px-4 py-2 rounded-2xl border-2 border-gold/30 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-gold h-[42px] resize-none"></textarea>
+
+    <!-- Botón -->
+    <button type="submit" class="btn-primary px-6 py-2 rounded-full font-semibold sm:col-span-2 lg:col-span-4 justify-self-center">
+        Enviar Ahora
+    </button>
+</form>
+    </div>
+</section>
+
+<!-- Iconos Flotantes -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+    <!-- WhatsApp -->
+    <a href="https://wa.me/5493884880298" target="_blank" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/churitayala" target="_blank" class="bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+        <i class="fa-brands fa-instagram text-3xl"></i>
+    </a>
+</div>
+ 
+    <!-- Footer -->
+<footer id="contacto" class="bg-dark text-white pt-16 pb-8 border-t border-white/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">          
+            <div class="lg:col-span-1">
+    <div class="flex items-center gap-4 mb-1">
+        <div class="w-24 h-24 flex items-center justify-center">
+            <img src="img/logo.ico" alt="Logo Churita" class="w-full h-full object-contain">
+        </div>
+        
+        <div>
+            <h3 class="font-serif text-sm font-bold">CHURITA</h3>
+            <p class="text-[8px] tracking-[0.2em] text-gold">CAFETERÍA & RESTO BAR</p>
+        </div>
+    </div>
+    <p class="text-gray-400 text-sm mb-4">Tu rincón acogedor para desayunos, comidas y veladas únicas en el corazón de la ciudad de Yala.</p>
+    
+    <div class="flex gap-3">
+        <a href="https://www.instagram.com/churitayala" class="w-10 h-10 rounded-full bg-white/10 hover:bg-gold hover:text-dark flex items-center justify-center transition">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    
+         </a>
+        <a href="https://wa.me/5493884880298" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-gold hover:text-dark flex items-center justify-center transition">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+    </div>
+</div>
+
+            <!-- Contacto -->
+            <div>
+                <h4 class="font-serif text-lg font-bold text-gold mb-4">Contacto</h4>
+                <ul class="space-y-3 text-gray-300 text-sm">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-gold"></i>
+                        <a href="tel:+573128456789" class="hover:text-gold transition">+54 9 3885980063</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-gold"></i>
+                        <a href="tel:+573128456789" class="hover:text-gold transition">+54 9 3884880298</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-envelope text-gold"></i>
+                        <a href="mailto:contacto@churita.com" class="hover:text-gold transition">javierpascualetti81@gmail.com</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-envelope text-gold"></i>
+                        <a href="mailto:contacto@churita.com" class="hover:text-gold transition">churitarestobar@gmail.com</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Opciones -->
+            <div>
+                <h4 class="font-serif text-lg font-bold text-gold mb-4">Opciones</h4>
+                <ul class="space-y-3 text-gray-300 text-sm">
+                    <li><a href="#inicio" class="hover:text-gold transition">Inicio</a></li>
+                    <li><a href="#menu" class="hover:text-gold transition">Nuestro Menú</a></li>
+                    <li><a href="#eventos" class="hover:text-gold transition">Eventos Privados</a></li>
+                    <li><a href="carta.html" class="hover:text-gold transition">Carta online</a></li>
+                  
+            </div>
+
+            <!-- Ubicación -->
+            <div>
+                <h4 class="font-serif text-lg font-bold text-gold mb-4">Ubicación</h4>
+                <div class="flex gap-2 text-gray-300 text-sm mb-4">
+                    <i class="fa-solid fa-location-dot text-gold mt-1"></i>
+                    <span>RN9, Y4616 Yala, Jujuy</span>
+                </div>
+                <div class="rounded-xl overflow-hidden h-40">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3641.435145216253!2d-65.40433683!3d-24.12135189!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941b13005eb11403%3A0x6993bb395da0a1d2!2sChuri!5e0!3m2!1ses!2sar!4v1783340043695!5m2!1ses!2sar" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2026 CHURITA CAFETERÍA & RESTO BAR. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+const API_KEY = 'AIzaSyB1GvnSx4a99ZLJvTPlevQxGjDp4JNXM2g'; 
+const FOLDER_ID = '1OCKRMrGwG3rZiaV7d6vSicayW7JvRKcx'; 
+const DRIVE_API_URL = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'+and+explicitlyTrashed=false&fields=files(id,name,thumbnailLink)&key=${API_KEY}`;
+
+
+// =========================================================================
+// 4. DINAMIC GOOGLE DRIVE CAROUSEL WITH AUTO-SCROLL
+// =========================================================================
+async function cargarFotosDriveIndex() {
+  const carousel = document.getElementById('carousel');
+  const loadingEl = document.getElementById('drive-carousel-loading');
+  const instagramCard = document.getElementById('instagram-card');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  if (!carousel || !instagramCard) return;
+
+  try {
+    const response = await fetch(DRIVE_API_URL);
+    const data = await response.json();
+
+    if (!data || !data.files || data.files.length === 0) {
+      throw new Error("No se encontraron imágenes en la carpeta.");
+    }
+
+    // Quitar el spinner de carga
+    if (loadingEl) loadingEl.remove();
+
+    // Insertar cada imagen traída de Google Drive ANTES de la tarjeta de Instagram
+    data.files.forEach((file) => {
+      const slideDiv = document.createElement('div');
+      slideDiv.className = "min-w-[300px] md:min-w-[400px] snap-center";
+
+      const img = document.createElement('img');
+      
+      // Usamos las miniaturas optimizadas para evitar el error 403 de Drive
+      if (file.thumbnailLink) {
+        img.src = file.thumbnailLink.replace(/=s\d+/, '=s800'); 
+      } else {
+        img.src = `https://docs.google.com/uc?export=view&id=${file.id}`;
+      }
+
+      img.alt = "Momento institucional del CENS";
+      img.className = "w-full h-72 object-cover rounded-2xl shadow-lg hover:opacity-90 transition-opacity select-none pointer-events-none";
+      
+      img.onerror = function() {
+        this.src = `https://docs.google.com/uc?export=view&id=${file.id}`;
+      };
+
+      slideDiv.appendChild(img);
+      carousel.insertBefore(slideDiv, instagramCard);
+    });
+
+    // --- LÓGICA DE BOTONES DE NAVEGACIÓN MANUAL ---
+    const scrollAmount = 340; // Píxeles que se desplaza el carrusel en cada clic
+
+    if (prevBtn && nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        // Si el usuario llega al final (tarjeta de Instagram), vuelve al principio de forma suave
+        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        // Si está en el principio de todo y va hacia atrás, salta al final
+        if (carousel.scrollLeft <= 10) {
+          carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+      });
+    }
+
+  } catch (error) {
+    console.error("Error al sincronizar con Google Drive:", error);
+    if (loadingEl) {
+      loadingEl.innerHTML = `
+        <i class="fas fa-exclamation-circle text-3xl text-red-500 mb-2"></i>
+        <p class="text-sm font-medium text-center px-4">No se pudo cargar la galería de Drive en este momento.</p>
+      `;
+    }
+  }
+}
+
+// Inicializar carrusel al cargar la página
+document.addEventListener('DOMContentLoaded', cargarFotosDriveIndex);
+
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Smooth Scroll with offset for sticky header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Form submission unificado
+const reservaForm = document.getElementById('reserva-form');
+const toast = document.getElementById('toast');
+
+reservaForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const telefono = document.getElementById('telefono').value;
+    const fecha = document.getElementById('fecha').value;
+    const comentario = document.getElementById('comentario').value; 
+    const numeroWhatsApp = "5493884880298";
+
+    // Construcción del mensaje
+    let mensaje = `Hola, quiero hacer una reserva.%0A%0A` +
+                  `Nombre: ${nombre}%0A` +
+                  `Teléfono: ${telefono}%0A` +
+                  `Fecha: ${fecha}`;
+    
+    if (comentario.trim() !== "") {
+        mensaje += `%0AComentario: ${comentario}`;
+    }
+
+    // Abrir WhatsApp
+    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, '_blank');
+
+    // 4. Mostrar el Toast de confirmación (Ahora dentro del evento)
+    if (toast) {
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            toast.classList.add('hidden');
+        }, 3000);
+    }
+
+    // 5. Limpiar el formulario (Ahora dentro del evento)
+    reservaForm.reset();
+});
+
+
+    </script>
+
+</body>
+</html>
